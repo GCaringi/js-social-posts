@@ -93,8 +93,8 @@ function pubblishPost(post, homepage){
     postEl.querySelector(".post-meta__author").innerHTML = post.author.name;
     postEl.querySelector(".post-meta__time").innerHTML = italianDate(post.created);
     postEl.querySelector(".post__text").innerHTML = post.content;
-    postEl.querySelector(".post__image").src = post.media;
-
+    postEl.querySelector(".post__image img").src = post.media;
+    postEl.querySelector(".js-likes-counter").innerHTML = post.likes;
     homepage.append(postEl);
 }
 
