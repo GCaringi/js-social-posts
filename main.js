@@ -61,10 +61,25 @@ const posts = [
      FUNCTIONS
 ----------------*/
 
+function initials(user){
+    return user.split(" ")[0][0] + " " + user.split(" ")[1][0];
+}
+
 function pubblishPost(post, homepage){
     const postEl = document.querySelector("#tpl-post").content.cloneNode(true);
     if (post.author.image === null){
         postEl.querySelector(".profile-pic").remove();
+
+        const defaultPic = document.createElement("div");
+        const defaultContent = document.createElement("span");
+        
+        defaultContent.innerHTML = initials(post.author.name);
+        
+        defaultPic.classList.add("profile-pic-default");
+        defaultPic.append(defaultContent);
+
+        postEl.querySelector(".post-meta__icon").append(defaultPic);
+        
     }else{
         postEl.querySelector(".profile-pic").src = post.author.image;
         postEl.querySelector(".profile-pic").alt = post.author.name;
