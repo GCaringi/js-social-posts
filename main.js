@@ -61,8 +61,13 @@ const posts = [
      FUNCTIONS
 ----------------*/
 
+
 function initials(user){
     return user.split(" ")[0][0] + " " + user.split(" ")[1][0];
+}
+
+function italianDate(date){
+    return date.split("-")[2] + "-" + date.split("-")[1] + "-" + date.split("-")[0];
 }
 
 function pubblishPost(post, homepage){
@@ -85,7 +90,7 @@ function pubblishPost(post, homepage){
         postEl.querySelector(".profile-pic").alt = post.author.name;
     }
     postEl.querySelector(".post-meta__author").innerHTML = post.author.name;
-    postEl.querySelector(".post-meta__time").innerHTML = post.created;
+    postEl.querySelector(".post-meta__time").innerHTML = italianDate(post.created);
     postEl.querySelector(".post__text").innerHTML = post.content;
     postEl.querySelector(".post__image").src = post.media;
     homepage.append(postEl);
@@ -108,3 +113,5 @@ for (let i = 0; i < posts.length; i++){
     // postContainer.append(post);
     pubblishPost(posts[i], postContainer);
 }
+
+console.log(italianDate("2021-05-15"))
