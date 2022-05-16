@@ -95,6 +95,8 @@ function pubblishPost(post, homepage){
     postEl.querySelector(".post__text").innerHTML = post.content;
     postEl.querySelector(".post__image img").src = post.media;
     postEl.querySelector(".js-likes-counter").innerHTML = post.likes;
+    postEl.querySelector(".js-likes-counter").id = `like-counter-${post.id-1}`;
+    postEl.querySelector(".js-like-button").dataset.postid = post.id-1;
     homepage.append(postEl);
 }
 
@@ -112,7 +114,17 @@ for (let i = 0; i < allBtn.length; i++){
     const likeBtn = allBtn[i];
     likeBtn.addEventListener("click", 
         function(){
-            console.log("Ho cliccato");
+            const id = likeBtn.getAttribute("data-postid");
+            const counter = document.getElementById(`like-counter-${(posts[id].id-1)}`);
+            if (likeBtn.classList.contains("like-button--liked")){
+                counter.innerHTML = String(Number(counter.innerHTML) - 1);
+                posts[id].likes -= 1;
+                likeBtn.classList.remove("like-button--liked");
+            }else{
+                counter.innerHTML = String(Number(counter.innerHTML) + 1);
+                likeBtn.classList.add("like-button--liked");
+                posts[id].likes += 1;
+            }
         }
     )
 }
