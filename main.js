@@ -89,29 +89,30 @@ function pubblishPost(post, homepage){
         postEl.querySelector(".profile-pic").src = post.author.image;
         postEl.querySelector(".profile-pic").alt = post.author.name;
     }
+
     postEl.querySelector(".post-meta__author").innerHTML = post.author.name;
     postEl.querySelector(".post-meta__time").innerHTML = italianDate(post.created);
     postEl.querySelector(".post__text").innerHTML = post.content;
     postEl.querySelector(".post__image").src = post.media;
+
     homepage.append(postEl);
 }
 
-
-// Milestone 1 - Prendendo come riferimento il layout di esempio presente nell'html, stampiamo i post del nostro feed.
-
+/*---------------
+     MAIN
+----------------*/
 const postContainer = document.getElementById("container");
 
 for (let i = 0; i < posts.length; i++){
-    // const post = document.querySelector("#tpl-post").content.cloneNode(true);
-    // post.querySelector(".profile-pic").src = posts[i].author.image;
-    // post.querySelector(".profile-pic").alt = posts[i].author.name;
-    // post.querySelector(".post-meta__author").innerHTML = posts[i].author.name;
-    // post.querySelector(".post-meta__time").innerHTML = posts[i].created;
-    // post.querySelector(".post__text").innerHTML = posts[i].content;
-    // post.querySelector(".post__image").src = posts[i].media;
-
-    // postContainer.append(post);
     pubblishPost(posts[i], postContainer);
 }
 
-console.log(italianDate("2021-05-15"))
+const allBtn = document.getElementsByClassName("js-like-button");
+for (let i = 0; i < allBtn.length; i++){
+    const likeBtn = allBtn[i];
+    likeBtn.addEventListener("click", 
+        function(){
+            console.log("Ho cliccato");
+        }
+    )
+}
